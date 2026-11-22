@@ -1,2 +1,96 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/><title>Fun | Yamamoto Lab at UALR</title><link href="style-v20.css?v=20261122a" rel="stylesheet"/></head><body><header class="site-header"><a class="brand" href="index.html">Yamamoto Lab at UALR</a><div class="header-right"><nav><a href="index.html">Home</a><a href="research.html">Research</a><a href="publications.html">Publications</a><a href="team.html">Team</a><a href="fun.html">Fun</a><a href="join.html">Join</a></nav><div aria-label="Social media" class="social-links"><a aria-label="Wataru Yamamoto on X" href="https://x.com/wayamamo" rel="noopener" target="_blank" title="X"><img alt="" src="assets/x.svg"/></a><a aria-label="Wataru Yamamoto on Bluesky" href="https://bsky.app/profile/wayamamo.bsky.social" rel="noopener" target="_blank" title="Bluesky"><img alt="" src="assets/bluesky.svg"/></a></div></div></header><section class="page-hero"><div class="inner"><h1>Fun</h1><div class="somersault-hero-art"><img alt="" aria-hidden="true" src="assets/somersault-header-fun-aligned.png"/></div></div></section><main><section class="fun-main section"><h2 class="fun-tagline">Life in and out of the lab</h2></section></main><footer>Yamamoto Lab at UALR · UA Little Rock</footer></body></html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width,initial-scale=1" name="viewport"/>
+  <title>Fun | Yamamoto Lab at UALR</title>
+  <link href="style-v20.css?v=20261122b" rel="stylesheet"/>
+  <style>
+    .fun-gallery-wrap{width:min(var(--max,1100px),90vw);margin:0 auto 5rem}
+    .fun-gallery{display:grid;grid-template-columns:minmax(280px,640px);justify-content:center;gap:1.35rem}
+    .fun-card{background:#fff;border:1px solid rgba(24,42,56,.10);border-radius:22px;overflow:hidden;box-shadow:0 12px 28px rgba(24,42,56,.08);transition:transform .18s ease, box-shadow .18s ease;cursor:pointer}
+    .fun-card:hover{transform:translateY(-4px);box-shadow:0 16px 32px rgba(24,42,56,.13)}
+    .fun-thumb{aspect-ratio:4/5;overflow:hidden;background:#eef3f6}
+    .fun-thumb img{width:100%;height:100%;object-fit:cover;display:block}
+    .fun-card-body{padding:1rem 1rem 1.05rem}
+    .fun-card h3{margin:0 0 .2rem;font-size:1.12rem;line-height:1.3;color:var(--ink,#14212b)}
+    .fun-card p{margin:0;color:#5b6670;font-size:1rem;line-height:1.45}
+    .fun-lightbox{position:fixed;inset:0;background:rgba(10,16,22,.82);display:none;align-items:center;justify-content:center;padding:1.5rem;z-index:1000}
+    .fun-lightbox.open{display:flex}
+    .fun-lightbox-inner{max-width:min(1100px,92vw);max-height:90vh;position:relative}
+    .fun-lightbox img{display:block;max-width:100%;max-height:76vh;border-radius:18px;box-shadow:0 20px 50px rgba(0,0,0,.35)}
+    .fun-lightbox-caption{color:#fff;text-align:center;margin-top:.8rem;font-size:1rem;line-height:1.45}
+    .fun-lightbox-close{position:absolute;top:-14px;right:-14px;border:0;background:#fff;color:#111827;width:40px;height:40px;border-radius:999px;font-size:1.2rem;font-weight:700;cursor:pointer;box-shadow:0 8px 24px rgba(0,0,0,.25)}
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="index.html">Yamamoto Lab at UALR</a>
+    <div class="header-right">
+      <nav>
+        <a href="index.html">Home</a><a href="research.html">Research</a><a href="publications.html">Publications</a><a href="team.html">Team</a><a href="fun.html">Fun</a><a href="join.html">Join</a>
+      </nav>
+      <div aria-label="Social media" class="social-links">
+        <a aria-label="Wataru Yamamoto on X" href="https://x.com/wayamamo" rel="noopener" target="_blank" title="X"><img alt="" src="assets/x.svg"/></a>
+        <a aria-label="Wataru Yamamoto on Bluesky" href="https://bsky.app/profile/wayamamo.bsky.social" rel="noopener" target="_blank" title="Bluesky"><img alt="" src="assets/bluesky.svg"/></a>
+      </div>
+    </div>
+  </header>
+
+  <section class="page-hero">
+    <div class="inner">
+      <h1>Fun</h1>
+      <div class="somersault-hero-art"><img alt="" aria-hidden="true" src="assets/somersault-header-fun-aligned.png"/></div>
+    </div>
+  </section>
+
+  <main>
+    <section class="section">
+      <div class="fun-gallery-wrap">
+        <div class="fun-gallery">
+          <article class="fun-card" data-full="assets/holiday-drawing.jpg" data-caption="Holiday drawing">
+            <div class="fun-thumb"><img alt="Holiday drawing" src="assets/holiday-drawing.jpg"/></div>
+            <div class="fun-card-body"><h3>Holiday drawing</h3><p>Holiday drawing</p></div>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div aria-hidden="true" class="fun-lightbox" id="funLightbox" role="dialog">
+    <div class="fun-lightbox-inner">
+      <button aria-label="Close image" class="fun-lightbox-close" id="funLightboxClose" type="button">×</button>
+      <img alt="" id="funLightboxImg" src=""/>
+      <div class="fun-lightbox-caption" id="funLightboxCaption"></div>
+    </div>
+  </div>
+
+  <footer>Yamamoto Lab at UALR · UA Little Rock</footer>
+
+  <script>
+    (function(){
+      const lightbox = document.getElementById('funLightbox');
+      const img = document.getElementById('funLightboxImg');
+      const cap = document.getElementById('funLightboxCaption');
+      const closeBtn = document.getElementById('funLightboxClose');
+      document.querySelectorAll('.fun-card').forEach(card => {
+        card.addEventListener('click', () => {
+          img.src = card.dataset.full;
+          img.alt = card.dataset.caption;
+          cap.textContent = card.dataset.caption;
+          lightbox.classList.add('open');
+          lightbox.setAttribute('aria-hidden','false');
+        });
+      });
+      function closeLightbox(){
+        lightbox.classList.remove('open');
+        lightbox.setAttribute('aria-hidden','true');
+        img.src='';
+      }
+      closeBtn.addEventListener('click', closeLightbox);
+      lightbox.addEventListener('click', (e)=>{ if(e.target === lightbox) closeLightbox(); });
+      document.addEventListener('keydown', (e)=>{ if(e.key === 'Escape') closeLightbox(); });
+    })();
+  </script>
+</body>
+</html>
